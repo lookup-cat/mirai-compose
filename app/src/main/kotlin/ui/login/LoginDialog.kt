@@ -25,6 +25,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.WindowSize
+import androidx.compose.ui.window.rememberDialogState
 import com.youngerhousea.mirai.compose.MiraiComposeDialog
 import com.youngerhousea.mirai.compose.console.viewModel
 import com.youngerhousea.mirai.compose.resource.R
@@ -38,7 +40,11 @@ fun LoginDialog(
     onCloseRequest: () -> Unit
 ) {
     if (show)
-        MiraiComposeDialog(onCloseRequest = onCloseRequest, resizable = false) {
+        MiraiComposeDialog(
+            onCloseRequest = onCloseRequest,
+            resizable = false,
+            state = rememberDialogState(size = WindowSize(400.dp, 400.dp))
+        ) {
             Login()
         }
 }
