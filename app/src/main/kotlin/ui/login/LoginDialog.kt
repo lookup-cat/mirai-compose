@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.key
@@ -48,13 +49,16 @@ fun Login(loginViewModel: LoginViewModel = viewModel { LoginViewModel() }) {
 
     val data by loginViewModel.state
 
-    Scaffold(scaffoldState = rememberScaffoldState(snackbarHostState = data.host), modifier = Modifier.onKeyEvent {
-        if (it.key == Key.Enter) {
-            loginViewModel.dispatch(LoginAction.Login)
-            return@onKeyEvent true
-        }
-        false
-    }) {
+    Scaffold(
+        scaffoldState = rememberScaffoldState(snackbarHostState = data.host),
+        backgroundColor = Color(0xFFb6e5fa),
+        modifier = Modifier.onKeyEvent {
+            if (it.key == Key.Enter) {
+                loginViewModel.dispatch(LoginAction.Login)
+                return@onKeyEvent true
+            }
+            false
+        }) {
         Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -100,8 +104,9 @@ private fun AccountTextField(
             isError = !it.matches("^[0-9]{0,15}$".toRegex())
             onAccountTextChange(it)
         },
+        colors = TextFieldDefaults.outlinedTextFieldColors(backgroundColor = Color.White),
         modifier = Modifier
-            .padding(40.dp),
+            .padding(horizontal = 40.dp, vertical = 5.dp),
         label = { Text(R.String.Login) },
         leadingIcon = { Icon(Icons.Default.AccountCircle, null) },
         isError = isError,
@@ -125,8 +130,9 @@ private fun PasswordTextField(
         onValueChange = {
             onPasswordTextChange(it)
         },
+        colors = TextFieldDefaults.outlinedTextFieldColors(backgroundColor = Color.White),
         modifier = Modifier
-            .padding(40.dp),
+            .padding(horizontal = 40.dp, vertical = 5.dp),
         label = { Text(R.String.Password) },
         leadingIcon = {
             Icon(

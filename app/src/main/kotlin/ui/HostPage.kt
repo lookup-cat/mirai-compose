@@ -83,35 +83,41 @@ fun NavHostFirst(
             onClick = onRouteMessage,
             selected = navigate == HostRoute.Message
         ) {
-            Icon(R.Icon.Message, null)
-            Text(R.String.RailTabFirst)
+            Icon(R.Icon.Message, null, tint = R.Colors.SplitFront)
+
+            if (navigate == HostRoute.Message)
+                Text(R.String.RailTabFirst, color = R.Colors.SplitFront)
         }
         RailTab(
             onClick = onRoutePlugins,
             selected = navigate == HostRoute.Plugins,
         ) {
-            Icon(R.Icon.Plugins, null)
-            Text(R.String.RailTabSecond)
+            Icon(R.Icon.Plugins, null, tint = R.Colors.SplitFront)
+            if (navigate == HostRoute.Plugins)
+                Text(R.String.RailTabSecond, color = R.Colors.SplitFront)
         }
         RailTab(
             onClick = onRouteSetting,
             selected = navigate == HostRoute.Setting
         ) {
-            Icon(R.Icon.Setting, null)
-            Text(R.String.RailTabThird)
+            Icon(R.Icon.Setting, null, tint = R.Colors.SplitFront)
+            if (navigate == HostRoute.Setting)
+                Text(R.String.RailTabThird, color = R.Colors.SplitFront)
         }
         RailTab(
             onClick = onRouteAbout,
             selected = navigate == HostRoute.About
         ) {
-            Icon(R.Icon.About, null)
-            Text(R.String.RailTabFourth)
+            Icon(R.Icon.About, null, tint = R.Colors.SplitFront)
+            if (navigate == HostRoute.About)
+                Text(R.String.RailTabFourth, color = R.Colors.SplitFront)
         }
     }
 }
 
 private val MinFirstSize = 170.dp
 
+// 懒的改了
 @Preview
 @Composable
 fun NavHostFirstPreview() {
@@ -124,28 +130,28 @@ fun NavHostFirstPreview() {
             onClick = {},
             selected = true
         ) {
-            Icon(R.Icon.Message, null)
+            Icon(R.Icon.Message, null, tint = R.Colors.SplitFront)
             Text(R.String.RailTabFirst)
         }
         RailTab(
             onClick = {},
             selected = false,
         ) {
-            Icon(R.Icon.Plugins, null)
+            Icon(R.Icon.Plugins, null, tint = R.Colors.SplitFront)
             Text(R.String.RailTabSecond)
         }
         RailTab(
             onClick = {},
             selected = false
         ) {
-            Icon(R.Icon.Setting, null)
+            Icon(R.Icon.Setting, null, tint = R.Colors.SplitFront)
             Text(R.String.RailTabThird)
         }
         RailTab(
             onClick = {},
             selected = false
         ) {
-            Icon(R.Icon.About, null)
+            Icon(R.Icon.About, null, tint = R.Colors.SplitFront)
             Text(R.String.RailTabFourth)
         }
     }

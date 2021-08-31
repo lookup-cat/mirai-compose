@@ -25,8 +25,8 @@ object R {
     }
 
     object String {
-        const val BotMenuExit = ""
-        const val BotMenuAdd = ""
+        const val BotMenuExit = "关闭机器人菜单"
+        const val BotMenuAdd = "登录机器人"
         const val RailTabFirst = "Message"
         const val RailTabSecond = "Plugin"
         const val RailTabThird = "Setting"
@@ -71,6 +71,7 @@ object R {
     object Colors {
         val TopAppBar = Color(0xFF69e2ff)
         val SplitLeft = Color(0xFF00b0ff)
+        val SplitFront = Color(0xFF9ddefc)
     }
 }
 

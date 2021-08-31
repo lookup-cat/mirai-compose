@@ -1,0 +1,9 @@
+.idea
+.github
+.gradle
+build
+data
+log
+plugins
+run
+config
