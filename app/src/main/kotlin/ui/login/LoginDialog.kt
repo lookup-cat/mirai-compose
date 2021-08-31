@@ -38,7 +38,7 @@ fun LoginDialog(
     onCloseRequest: () -> Unit
 ) {
     if (show)
-        MiraiComposeDialog(onCloseRequest = onCloseRequest) {
+        MiraiComposeDialog(onCloseRequest = onCloseRequest, resizable = false) {
             Login()
         }
 }
@@ -51,10 +51,12 @@ fun Login(loginViewModel: LoginViewModel = viewModel { LoginViewModel() }) {
 
     Scaffold(
         scaffoldState = rememberScaffoldState(snackbarHostState = data.host),
-        backgroundColor = Color(0xFFb6e5fa),
+        backgroundColor = Color(0xFFb6e5fa), // 比较浅的主题色
         modifier = Modifier.onKeyEvent {
             if (it.key == Key.Enter) {
-                loginViewModel.dispatch(LoginAction.Login)
+                // TODO 此处应该有提升(账号或密码为空)
+                if (loginViewModel.state.value.account.isNotEmpty() && loginViewModel.state.value.password.isNotEmpty())
+                    loginViewModel.dispatch(LoginAction.Login)
                 return@onKeyEvent true
             }
             false
@@ -83,7 +85,12 @@ fun Login(loginViewModel: LoginViewModel = viewModel { LoginViewModel() }) {
                 },
             )
             LoginButton(
-                onClick = { loginViewModel.dispatch(LoginAction.Login) },
+                modifier = Modifier.padding(vertical = 50.dp),
+                onClick = {
+                    // TODO 此处应该有提升(账号或密码为空)
+                    if (loginViewModel.state.value.account.isNotEmpty() && loginViewModel.state.value.password.isNotEmpty())
+                        loginViewModel.dispatch(LoginAction.Login)
+                },
                 isLoading = data.isLoading
             )
         }
@@ -166,13 +173,14 @@ private fun PasswordTextField(
 @Composable
 private fun LoginButton(
     onClick: () -> Unit,
-    isLoading: Boolean
+    isLoading: Boolean,
+    modifier: Modifier = Modifier,
 ) = Button(
     onClick = onClick,
     modifier = Modifier
         .requiredHeight(100.dp)
         .aspectRatio(2f)
-        .padding(24.dp),
+        .padding(30.dp),
 ) {
     if (isLoading)
         HorizontalDottedProgressBar()

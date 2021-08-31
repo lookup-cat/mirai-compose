@@ -5,7 +5,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.forEachGesture
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Maximize
@@ -101,6 +104,7 @@ fun MiraiComposeDialog(
     focusable: Boolean = true,
     onPreviewKeyEvent: ((KeyEvent) -> Boolean) = { false },
     onKeyEvent: ((KeyEvent) -> Boolean) = { false },
+    resizable: Boolean = true,
     content: @Composable DialogWindowScope.() -> Unit
 ) = Dialog(
     onCloseRequest = onCloseRequest,
@@ -109,7 +113,7 @@ fun MiraiComposeDialog(
     title = title,
     icon = icon,
     undecorated = true,
-    resizable = true,
+    resizable = resizable,
     enabled = enabled,
     focusable = focusable,
     onPreviewKeyEvent = onPreviewKeyEvent,
@@ -180,7 +184,7 @@ private val MiraiComposeWindowSize = WindowSize(1280.dp, 768.dp)
 private val DraggableLeftStart = 20.dp
 private val DraggableRightStart = 10.dp
 private val WindowDraggableHeight = 30.dp
-private val DialogDraggableHeight = 20.dp
+private val DialogDraggableHeight = 30.dp
 private val DraggableIconSpace = 5.dp
 
 // remove on future
